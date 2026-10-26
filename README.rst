@@ -101,27 +101,9 @@ To report bugs, please use the fluids's Bug Tracker at:
 
     https://github.com/CalebBell/fluids/issues
 
-If you have further questions about the usage of the library, feel free
-to contact the author at Caleb.Andrew.Bell@gmail.com.
-
-
 License information
 -------------------
 
 Fluids is MIT licensed. See ``LICENSE.txt`` for full information
 on the terms & conditions for usage of this software, and a
 DISCLAIMER OF ALL WARRANTIES.
-
-Although not required by the fluids license, if it is convenient for you,
-please cite fluids if used in your work. Please also consider contributing
-any changes you make back, such that they may be incorporated into the
-main library and all of us will benefit from them.
-
-
-Citation
---------
-
-To cite fluids in publications use::
-
-    Caleb Bell and Contributors (2016-2025). fluids: Fluid dynamics component of Chemical Engineering Design Library (ChEDL)
-    https://github.com/CalebBell/fluids.
