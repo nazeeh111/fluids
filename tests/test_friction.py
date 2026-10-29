@@ -398,6 +398,19 @@ def test_nearest_material_roughness_default_dataset():
     assert hit == "Seamless steel tubes, Condensate pipes in open systems or periodically operated steam pipelines"
 
 
+def test_nearest_material_roughness_without_thefuzz(monkeypatch):
+    import fluids.friction as friction
+
+    monkeypatch.setitem(sys.modules, "thefuzz", None)
+    monkeypatch.setattr(friction, "fuzzy_match_fun", None)
+    expected = "Seamless steel tubes, Condensate pipes in open systems or periodically operated steam pipelines"
+    for clean in (None, False):
+        for query in ("Condensate pipes", "CONDENSATE PIPES", "condensate pipes"):
+            assert friction.nearest_material_roughness(query, clean=clean) == expected
+    assert friction.nearest_material_roughness("pLaStIc", clean=True) == "Plastic coated"
+    assert friction.fuzzy_match("coppper", {"Copper", "Steel"}) == "Copper"
+
+
 @pytest.mark.skipif(not has_thefuzz, reason="missing thefuzz")
 def test_material_roughness():
     e1 = material_roughness("Plastic coated")

@@ -227,7 +227,14 @@ def fuzzy_match(name: str, strings: set[str]) -> str:
         #fuzzy_match_fun = lambda name, strings: process.extractOne(name, strings, scorer=fuzz.partial_ratio)[0]
     except ImportError: # pragma: no cover
         import difflib
-        fuzzy_match_fun = lambda name, strings: difflib.get_close_matches(name, strings, n=1, cutoff=0)[0]
+        def fuzzy_match_fun(name, strings):
+            names = {candidate.casefold(): candidate for candidate in strings}
+            query = name.casefold()
+            # A literal material description should outrank a shorter,
+            # unrelated label with a higher whole-string similarity score.
+            contained = [candidate for candidate in names if query in candidate]
+            match = difflib.get_close_matches(query, contained or names, n=1, cutoff=0)[0]
+            return names[match]
     return fuzzy_match_fun(name, strings)
 
 LAMINAR_TRANSITION_PIPE = 2040.

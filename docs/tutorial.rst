@@ -1097,8 +1097,8 @@ pipe (15 more meters), and a sharp exit:
 >>> K += change_K_basis(K_from_f(fd=fd3, L=L3, D=D3), D1=D3, D2=D1)
 >>> K += diffuser_sharp(Di1=D2, Di2=D3)
 
->>> dP_from_K(K, rho=rho, V=V1)
-<Quantity(734959.105, 'pascal')>
+>>> print(dP_from_K(K, rho=rho, V=V1))
+734959.105 pascal
 
 
 
